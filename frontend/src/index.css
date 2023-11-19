@@ -1,0 +1,174 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.zen {
+  font-size: 20px;
+  margin-bottom: 6vh;
+  height: 90vh;
+  background: linear-gradient(to bottom right, rgb(83, 169, 198), #457b62);
+  color: white;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+.zen > p {
+  font-size: 1.5em;
+  position: relative;
+  top: 40%;
+}
+
+.zen > h1 {
+  color: white;
+}
+
+.about h1 {
+  font-size: 5em;
+  text-align: center;
+  position: relative;
+  top: 40%;
+}
+
+#features {
+  padding-bottom: 4vh;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  text-align: center;
+}
+
+#features > h1 {
+  background: linear-gradient(to bottom right, #387b90, #93eac2);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+#getting-started {
+  padding-bottom: 4vh;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+#getting-started > h1 {
+  font-size: 5em;
+  background: linear-gradient(to bottom right, #387b90, #93eac2);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+#overview {
+  text-align: center;
+  font-size: 16px;
+  padding-bottom: 4vh;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+#overview > h1 {
+  font-size: 5em;
+  background: linear-gradient(to bottom right, #387b90, #93eac2);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+#overview > p {
+  text-align: 'center';
+  font-size: 1.2em;
+}
+
+.features {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  gap: 5vw;
+  font-size: 1.2em;
+}
+
+#contributing {
+  font-size: 16px;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+#contributing > h1 {
+  background: linear-gradient(to bottom right, #387b90, #93eac2);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+#contributing > p {
+  font-size: 1.2em;
+}
+
+a:hover {
+  color: black;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.insights {
+  color: teal;
+  font-size: 1.8em;
+}
+
+.summary {
+  box-shadow: 5px 5px 10px grey;
+  border-radius: 10px;
+  padding: 2.5em;
+  margin-bottom: 5vh;
+}
+
+.recommendations {
+  display: flex;
+  flex-direction: row;
+  gap: 2vw;
+  justify-content: space-evenly;
+  padding: 2px;
+  
+}
+
+.recommendation {
+  box-shadow: 5px 5px 10px grey;
+}
+
+#NotInvest {
+  display: none;
+}
