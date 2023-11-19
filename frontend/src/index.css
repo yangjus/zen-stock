@@ -24,6 +24,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+    font-family: 'Optima', sans-serif
 }
 
 .zen {
@@ -39,7 +40,7 @@ body {
 .zen > p {
   font-size: 1.5em;
   position: relative;
-  top: 40%;
+  top: 10%;
 }
 
 .zen > h1 {
@@ -50,7 +51,7 @@ body {
   font-size: 5em;
   text-align: center;
   position: relative;
-  top: 40%;
+  top: 10%;
 }
 
 #features {
@@ -145,7 +146,6 @@ th {
 }
 
 .insights {
-  color: teal;
   font-size: 1.8em;
 }
 

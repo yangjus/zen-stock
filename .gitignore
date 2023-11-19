@@ -1,1 +1,6 @@
 env
+model
+model2
+summarize_model
+out_old.csv
+fine_tuned_model

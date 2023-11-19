@@ -1,3 +1,19 @@
+import {useState} from 'react';
+import { Stack, Button } from '@mui/material';
+import {
+  createTheme,
+  ThemeProvider,
+} from '@mui/material/styles';
+
+const { palette } = createTheme();
+const { augmentColor } = palette;
+const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
+const theme = createTheme({
+  palette: {
+    lightteal: createColor('#14b8a6'),
+  },
+});
+
 const data = {
     invest: [
         {
@@ -74,55 +90,32 @@ const data = {
         }
     ]
 }
-
+ 
 export default function Recommendations(){
-    function changeContent() {
-        const selector = document.getElementById('recSelector');
-        const selectedValue = selector.value;
-        console.log(selectedValue)
-
-        const contentDivs = document.querySelectorAll('.recommendations');
-        contentDivs.forEach(div => {
-            div.style.display = 'none';
-        });
-
-        const selectedContentDiv = document.getElementById(selectedValue);
-        if (selectedContentDiv) {
-            selectedContentDiv.style.display = 'block';
-        }
-    }
+ 
     return (
+      <ThemeProvider theme={theme}>
         <div>
-            <select id="recSelector" onchange={changeContent()}>
-                <option value="Invest" style={{color:'MediumSeaGreen'}}>Positive Invest</option>
-                <option value="NotInvest" style={{color:'Red'}}>Negative Invest</option>
-            </select>
-            <div id="Invest" className="recommendations">
-                {data["invest"].map((rec)=>(
-                    <div className="recommendation">
-                        <p>{rec.label}</p>
-                        <p>Price: {rec.price}</p>
-                        <p>Day Change: 
-                            {rec.dollarChange > 0 ? <span>+</span> : <span>-</span>}{rec.dollarChange} / 
-                            {rec.dollarChange > 0 ? <span>+</span> : <span>-</span>}{rec.percentChange}
-                        </p>
-                        <p>Zen Score: {rec.zenScore}</p>
-                    </div>
-                ))}
-            </div>
-            <div id="NotInvest" className="recommendations">
-                {data["notInvest"].map((rec)=>(
-                    <div className="recommendation">
-                        <p>{rec.label}</p>
-                        <p>Price: {rec.price}</p>
-                        <p>Day Change: 
-                            {rec.dollarChange > 0 ? <span>+</span> : <span>-</span>}{rec.dollarChange} / 
-                            {rec.dollarChange > 0 ? <span>+</span> : <span>-</span>}{rec.percentChange}
-                        </p>
-                        <p>Zen Score: {rec.zenScore}</p>
-                    </div>
-                ))}
-            </div>
+          <h1 className="text-2xl pb-4"><strong>Recommended Stock Picks</strong></h1>
+            <Stack direction="row" gap={4}>
+              {data["invest"].map((rec)=>(
+                  <div className="recommendation p-10 flex-col justify-center align-center">
+                      <h2 className="text-xl"><strong>{rec.label}</strong></h2>
+                      <p><b>Price:</b><br></br> {rec.price}</p>
+                      <p><b>Day Change:</b><br></br> 
+                          <span style={{color: rec.dollarChange > 0 ? "MediumSeaGreen" : "Red"}}>
+                          {rec.dollarChange > 0 ? <span>+</span> : <span>-</span>}
+                          {rec.dollarChange} / {rec.dollarChange > 0 ? <span>+</span> : <span>-</span>}{rec.percentChange}%</span>
+                      </p>
+                      <p><b>Zen Score:</b> {rec.zenScore}</p>
+                      <p className="text-sm">{`(Based on news sentiment score)`}</p>
+                  </div>
+              ))}
+            </Stack>
+            <div className="flex m-6 align-center justify-center">
+              <Button variant="contained" color="lightteal" sx={{color: 'white'}}>Invest in All</Button>
+              </div>
         </div>
+        </ThemeProvider>
     )
 }

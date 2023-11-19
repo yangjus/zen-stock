@@ -8,8 +8,10 @@ const stock_data = {
     "Mon Nov 27 2017", "Tue Nov 28 2017", "Wed Nov 29 2017", "Thu Nov 30 2017", "Fri Dec 01 2017",
     "Mon Dec 04 2017", "Tue Dec 05 2017", "Wed Dec 06 2017", "Thu Dec 07 2017", "Fri Dec 08 2017"
   ],
-  prices: [8107.85, 8128, 8122.9, 8165.5, 8340.7, 8423.7, 8423.5, 8514.3, 8481.85, 8487.7, 
-    8506.9, 8626.2, 8668.95, 8602.3, 8607.55, 8512.9, 8496.25, 8600.65, 8881.1, 9340.85]
+  prices: [
+    3536.85, 3556, 3551.9, 3594.5, 3769.7, 3852.7, 3852.5, 3943.3, 3910.85, 3916.7,
+    3935.9, 4055.2, 4097.95, 4031.3, 4036.55, 3941.9, 3924.25, 4029.65, 4310.1, 4769.85
+  ]
 }
 
 const StockChart = () => {
@@ -40,14 +42,14 @@ const StockChart = () => {
         text: "User Portfolio",
         align: 'left',
         style: {
-          fontSize: 20,
+          fontSize: 30,
         },
       },
       subtitle: {
-        text: "Change over Time",
+        text: "Investing",
         align: 'left',
         style: {
-          fontSize: 15,
+          fontSize: 20,
         },
       },
       labels: stock_data.dates,

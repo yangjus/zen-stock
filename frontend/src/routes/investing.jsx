@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import SelectTicker from './../components/SelectTicker.jsx'
 import StockChart from './../components/StockChart.jsx'
 import Recommendations from './../components/Recommendations.jsx'
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import {
   createTheme,
   ThemeProvider,
@@ -12,7 +12,7 @@ import { Stack } from '@mui/material';
 const { palette } = createTheme();
 const { augmentColor } = palette;
 const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
-export const theme = createTheme({
+const theme = createTheme({
   palette: {
     lightteal: createColor('#14b8a6'),
   },
@@ -60,7 +60,7 @@ export async function getTradeData(ticker) {
           return formattedDate.split(', ')[1]; // Extracting day, month, and year
         })
       };
-      res.append(transformedData)
+      res.push(transformedData)
     }
   } catch (error) {
     console.error(error);
@@ -92,9 +92,9 @@ export default function Investing() {
   }, [timeframe])
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-12">
+    <main className="flex min-h-screen flex-col items-center py-6 px-10">
       <SelectTicker ticker={ticker} setTicker={setTicker} getTicker={getTicker}/>
-      <div className="m-6">
+      <div className="m-2">
         <div className="m-4">
         <ThemeProvider theme={theme}>
           <Stack direction="row" gap={1}>
@@ -110,8 +110,25 @@ export default function Investing() {
           </Stack>
         </ThemeProvider>
         </div>
-        <StockChart data={tickerData} tradeData={tradeData[timeframe]}/>
+        <Stack direction="row" gap={4}>
+          <StockChart data={tickerData} tradeData={tradeData[timeframe]}/>
+          <Stack direction="column" gap={2}>
+            <div>
+            <h1 className="text-2xl"><strong>Stock News Insight</strong></h1>
+            <h3 className="text-md">33 Article Mentions</h3>
+            </div>
+            <Typography>
+              {`Apple is changing how messages look on iPhones by adopting a new standard called Rich Communication Services (RCS), 
+              which might do away with the distinctive green and blue bubbles. Starting in 2024, 
+              this move makes it easier for iPhones and Android phones to exchange messages. 
+              It's a shift for Apple, known for its closed system. The change could be a response 
+              to pressure, especially from Google, urging interoperability. Overall, it reflects Apple's move toward making iPhone 
+              messages work better with other phones.`}
+            </Typography>
+          </Stack>
+        </Stack>
       </div>
+      <Recommendations />
     </main>
   )
 }

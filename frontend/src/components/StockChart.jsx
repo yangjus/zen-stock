@@ -24,17 +24,38 @@ const formatPriceChangeText = (openPrice, closePrice) => {
   return `Open: $${openPrice} | Close: $${closePrice} | Change: $${priceChange} (${percentageChange}%)`;
 };
 
+const getTradeData2 = async () => {
+    const url = `https://api.polygon.io/v2/aggs/ticker/AAPL/range/1/day/2023-10-19/2023-11-19?adjusted=true&sort=asc&limit=100&apiKey=IubNrVoa_fXYCrvs229uvhyP2DdIBBXD`;
+    let transformedData = null
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      // transform data to fit graph
+      transformedData = {
+        prices: data.results.map(item => item.c),
+        dates: data.results.map(item => {
+          const date = new Date(item.t);
+          const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+          const formattedDate = date.toLocaleDateString('en-US', options);
+          return formattedDate.split(', ')[1]; // Extracting day, month, and year
+        })
+      };
+    } catch (error) {
+      console.error(error);
+    }
+    return transformedData;
+}
+
 const StockChart = ({data, tradeData}) => {
   // Sample data for the area chart
   const [tickerInfo, setTickerInfo] = useState(data);
   const [tradeInfo, setTradeInfo] = useState(tradeData);
-  console.log(tradeInfo)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getData("AAPL");
-        const response2 = await getTradeData("AAPL");
+        const response2 = await getTradeData2();
         setTickerInfo(response);
         setTradeInfo(response2);
       } catch (error) {

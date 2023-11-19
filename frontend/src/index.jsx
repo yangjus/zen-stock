@@ -13,6 +13,7 @@ import Investing from "./routes/investing";
 import Portfolio from "./routes/portfolio";
 import About from "./routes/about";
 import CreateAccountPage from "./routes/createaccount";
+import Login from "./routes/login";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,15 @@ const router = createBrowserRouter([
       <>
       <Navbar />
       <CreateAccountPage />
+      </>
+    ),
+  },
+  {
+    path: "login",
+    element: (
+      <>
+      <Navbar />
+      <Login />
       </>
     ),
   },
